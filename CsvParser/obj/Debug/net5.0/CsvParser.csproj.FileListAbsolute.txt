@@ -1,0 +1,16 @@
+D:\Learn\learn-dotnet\CsvParser\bin\Debug\net5.0\CsvParser.exe
+D:\Learn\learn-dotnet\CsvParser\bin\Debug\net5.0\CsvParser.deps.json
+D:\Learn\learn-dotnet\CsvParser\bin\Debug\net5.0\CsvParser.runtimeconfig.json
+D:\Learn\learn-dotnet\CsvParser\bin\Debug\net5.0\CsvParser.runtimeconfig.dev.json
+D:\Learn\learn-dotnet\CsvParser\bin\Debug\net5.0\CsvParser.dll
+D:\Learn\learn-dotnet\CsvParser\bin\Debug\net5.0\ref\CsvParser.dll
+D:\Learn\learn-dotnet\CsvParser\bin\Debug\net5.0\CsvParser.pdb
+D:\Learn\learn-dotnet\CsvParser\obj\Debug\net5.0\CsvParser.csproj.AssemblyReference.cache
+D:\Learn\learn-dotnet\CsvParser\obj\Debug\net5.0\CsvParser.GeneratedMSBuildEditorConfig.editorconfig
+D:\Learn\learn-dotnet\CsvParser\obj\Debug\net5.0\CsvParser.AssemblyInfoInputs.cache
+D:\Learn\learn-dotnet\CsvParser\obj\Debug\net5.0\CsvParser.AssemblyInfo.cs
+D:\Learn\learn-dotnet\CsvParser\obj\Debug\net5.0\CsvParser.csproj.CoreCompileInputs.cache
+D:\Learn\learn-dotnet\CsvParser\obj\Debug\net5.0\CsvParser.dll
+D:\Learn\learn-dotnet\CsvParser\obj\Debug\net5.0\ref\CsvParser.dll
+D:\Learn\learn-dotnet\CsvParser\obj\Debug\net5.0\CsvParser.pdb
+D:\Learn\learn-dotnet\CsvParser\obj\Debug\net5.0\CsvParser.genruntimeconfig.cache
