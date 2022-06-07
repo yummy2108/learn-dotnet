@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 
 namespace CsvParser
 {
@@ -18,7 +19,11 @@ namespace CsvParser
             //             2011,Thor,Marvel Studios
             //             2011,X-Men: First Class,20th Century Fox";
             // var reader = new StringReader(csv);
-            var reader = new StreamReader(new FileStream("Marvel.csv", FileMode.Open));
+            // var reader = new StreamReader(new FileStream("Marvel.csv", FileMode.Open));
+
+            var stream = typeof(Program).GetTypeInfo().Assembly.GetManifestResourceStream("CsvParser.Marvel.csv");
+            var reader = new StreamReader(stream);
+
             var csvReader = new CsvReader(reader);
             foreach (var line in csvReader.Lines)
             {

@@ -10,6 +10,15 @@
   </PropertyGroup>
 
   <!-- <ItemGroup>
+    <None Include="Marvel.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup> -->
+  <ItemGroup>
+    <EmbeddedResource Include="Marvel.csv" />
+  </ItemGroup>
+
+  <!-- <ItemGroup>
     <Compile Remove="Program.cs" />
   </ItemGroup> -->
   
