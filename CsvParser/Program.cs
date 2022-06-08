@@ -21,13 +21,20 @@ namespace CsvParser
             // var reader = new StringReader(csv);
             // var reader = new StreamReader(new FileStream("Marvel.csv", FileMode.Open));
 
-            var stream = typeof(Program).GetTypeInfo().Assembly.GetManifestResourceStream("CsvParser.Marvel.csv");
-            var reader = new StreamReader(stream);
+            // var stream = typeof(Program).GetTypeInfo().Assembly.GetManifestResourceStream("CsvParser.Marvel.csv");
+            // var reader = new StreamReader(stream);
 
-            var csvReader = new CsvReader(reader);
-            foreach (var line in csvReader.Lines)
+            // var csvReader = new CsvReader(reader);
+            // foreach (var line in csvReader.Lines)
+            // {
+            //     Console.WriteLine(line.First(p => p.Key == "Title").Value);
+            // }
+
+            using (var sr = new StreamReader(new FileStream("Marvel.csv", FileMode.Open)))
             {
-                Console.WriteLine(line.First(p => p.Key == "Title").Value);
+                var csvReader = new CsvReader(sr);
+                foreach(var line in csvReader.Lines)
+                    Console.WriteLine(line.First(p => p.Key == "Title").Value);
             }
         }
     }

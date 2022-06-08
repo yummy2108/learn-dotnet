@@ -1,0 +1,12 @@
+D:\Learn\learn-dotnet\BusinessDays\BizDayCalc\bin\Debug\net5.0\BizDayCalc.deps.json
+D:\Learn\learn-dotnet\BusinessDays\BizDayCalc\bin\Debug\net5.0\BizDayCalc.dll
+D:\Learn\learn-dotnet\BusinessDays\BizDayCalc\bin\Debug\net5.0\ref\BizDayCalc.dll
+D:\Learn\learn-dotnet\BusinessDays\BizDayCalc\bin\Debug\net5.0\BizDayCalc.pdb
+D:\Learn\learn-dotnet\BusinessDays\BizDayCalc\obj\Debug\net5.0\BizDayCalc.csproj.AssemblyReference.cache
+D:\Learn\learn-dotnet\BusinessDays\BizDayCalc\obj\Debug\net5.0\BizDayCalc.GeneratedMSBuildEditorConfig.editorconfig
+D:\Learn\learn-dotnet\BusinessDays\BizDayCalc\obj\Debug\net5.0\BizDayCalc.AssemblyInfoInputs.cache
+D:\Learn\learn-dotnet\BusinessDays\BizDayCalc\obj\Debug\net5.0\BizDayCalc.AssemblyInfo.cs
+D:\Learn\learn-dotnet\BusinessDays\BizDayCalc\obj\Debug\net5.0\BizDayCalc.csproj.CoreCompileInputs.cache
+D:\Learn\learn-dotnet\BusinessDays\BizDayCalc\obj\Debug\net5.0\BizDayCalc.dll
+D:\Learn\learn-dotnet\BusinessDays\BizDayCalc\obj\Debug\net5.0\ref\BizDayCalc.dll
+D:\Learn\learn-dotnet\BusinessDays\BizDayCalc\obj\Debug\net5.0\BizDayCalc.pdb
