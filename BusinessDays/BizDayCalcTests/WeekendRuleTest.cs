@@ -1,28 +1,29 @@
 using System;
 using Xunit;
 using BizDayCalc;
+using System.Collections.Generic;
 
 namespace BizDayCalcTests
 {
     public class WeekendRuleTest
     {
-        [Fact]
-        public void TestCheckIsBusinessDay()
-        {
-            var rule = new WeekendRule();
-            Assert.True(rule.CheckIsBusinessDay(new DateTime(2016, 6, 27)));
-            Assert.False(rule.CheckIsBusinessDay(new DateTime(2016, 6, 26)));
+        public static IEnumerable<object[]> Days{
+            get {
+                yield return new object[] {true, new DateTime(2016, 6, 27)};
+                yield return new object[] {true, new DateTime(2016, 3, 1)};
+                yield return new object[] {false, new DateTime(2016, 6, 26)};
+                yield return new object[] {false, new DateTime(2016, 11, 12)};
+            }
         }
 
         [Theory]
-        [InlineData("2016-06-27")]
-        [InlineData("2016-03-01")]
-        [InlineData("2017-09-20")]
-        // [InlineData("2017-09-17")]
-        public void IsBusinessDay(string date)
+        [MemberData(nameof(Days))]
+        public void TestCheckIsBusinessDay(bool expected, DateTime date)
         {
             var rule = new WeekendRule();
-            Assert.True(rule.CheckIsBusinessDay(DateTime.Parse(date)));
+            // Assert.True(rule.CheckIsBusinessDay(new DateTime(2016, 6, 27)));
+            // Assert.False(rule.CheckIsBusinessDay(new DateTime(2016, 6, 26)));
+            Assert.Equal(expected, rule.CheckIsBusinessDay(date));
         }
 
         [Theory]
