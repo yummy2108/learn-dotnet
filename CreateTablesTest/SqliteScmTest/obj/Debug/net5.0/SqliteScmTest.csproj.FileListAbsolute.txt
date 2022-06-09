@@ -108,3 +108,6 @@ D:\Learn\learn-dotnet\CreateTablesTest\SqliteScmTest\obj\Debug\net5.0\SqliteScmT
 D:\Learn\learn-dotnet\CreateTablesTest\SqliteScmTest\obj\Debug\net5.0\ref\SqliteScmTest.dll
 D:\Learn\learn-dotnet\CreateTablesTest\SqliteScmTest\obj\Debug\net5.0\SqliteScmTest.pdb
 D:\Learn\learn-dotnet\CreateTablesTest\SqliteScmTest\obj\Debug\net5.0\SqliteScmTest.genruntimeconfig.cache
+D:\Learn\learn-dotnet\CreateTablesTest\SqliteScmTest\bin\Debug\net5.0\CoverletSourceRootsMapping
+D:\Learn\learn-dotnet\CreateTablesTest\SqliteScmTest\bin\Debug\net5.0\WidgetScmDataAccess.dll
+D:\Learn\learn-dotnet\CreateTablesTest\SqliteScmTest\bin\Debug\net5.0\WidgetScmDataAccess.pdb

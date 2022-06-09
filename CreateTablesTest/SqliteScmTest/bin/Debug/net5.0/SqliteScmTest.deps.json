@@ -12,6 +12,7 @@
           "Microsoft.NET.Test.Sdk": "16.9.4",
           "System.Data.Common": "4.3.0",
           "System.Runtime.Serialization.Primitives": "4.3.0",
+          "WidgetScmDataAccess": "1.0.0",
           "coverlet.collector": "3.0.2",
           "xunit": "2.4.1",
           "xunit.runner.visualstudio": "2.4.3"
@@ -1199,7 +1200,15 @@
           }
         }
       },
-      "xunit.runner.visualstudio/2.4.3": {}
+      "xunit.runner.visualstudio/2.4.3": {},
+      "WidgetScmDataAccess/1.0.0": {
+        "dependencies": {
+          "System.Data.Common": "4.3.0"
+        },
+        "runtime": {
+          "WidgetScmDataAccess.dll": {}
+        }
+      }
     }
   },
   "libraries": {
@@ -1914,6 +1923,11 @@
       "sha512": "sha512-kZZSmOmKA8OBlAJaquPXnJJLM9RwQ27H7BMVqfMLUcTi9xHinWGJiWksa3D4NEtz0wZ/nxd2mogObvBgJKCRhQ==",
       "path": "xunit.runner.visualstudio/2.4.3",
       "hashPath": "xunit.runner.visualstudio.2.4.3.nupkg.sha512"
+    },
+    "WidgetScmDataAccess/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

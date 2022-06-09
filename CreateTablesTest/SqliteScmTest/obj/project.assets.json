@@ -1804,6 +1804,19 @@
         "build": {
           "build/netcoreapp2.1/xunit.runner.visualstudio.props": {}
         }
+      },
+      "WidgetScmDataAccess/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "System.Data.Common": "4.3.0"
+        },
+        "compile": {
+          "bin/placeholder/WidgetScmDataAccess.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WidgetScmDataAccess.dll": {}
+        }
       }
     }
   },
@@ -6203,6 +6216,11 @@
         "xunit.runner.visualstudio.2.4.3.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
+    },
+    "WidgetScmDataAccess/1.0.0": {
+      "type": "project",
+      "path": "../WidgetScmDataAccess/WidgetScmDataAccess.csproj",
+      "msbuildProject": "../WidgetScmDataAccess/WidgetScmDataAccess.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -6211,6 +6229,7 @@
       "Microsoft.NET.Test.Sdk >= 16.9.4",
       "System.Data.Common >= 4.3.0",
       "System.Runtime.Serialization.Primitives >= 4.3.0",
+      "WidgetScmDataAccess >= 1.0.0",
       "coverlet.collector >= 3.0.2",
       "xunit >= 2.4.1",
       "xunit.runner.visualstudio >= 2.4.3"
@@ -6246,7 +6265,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Learn\\learn-dotnet\\CreateTablesTest\\WidgetScmDataAccess\\WidgetScmDataAccess.csproj": {
+              "projectPath": "D:\\Learn\\learn-dotnet\\CreateTablesTest\\WidgetScmDataAccess\\WidgetScmDataAccess.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

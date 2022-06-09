@@ -1,0 +1,12 @@
+D:\Learn\learn-dotnet\CreateTablesTest\WidgetScmDataAccess\bin\Debug\net5.0\WidgetScmDataAccess.deps.json
+D:\Learn\learn-dotnet\CreateTablesTest\WidgetScmDataAccess\bin\Debug\net5.0\WidgetScmDataAccess.dll
+D:\Learn\learn-dotnet\CreateTablesTest\WidgetScmDataAccess\bin\Debug\net5.0\ref\WidgetScmDataAccess.dll
+D:\Learn\learn-dotnet\CreateTablesTest\WidgetScmDataAccess\bin\Debug\net5.0\WidgetScmDataAccess.pdb
+D:\Learn\learn-dotnet\CreateTablesTest\WidgetScmDataAccess\obj\Debug\net5.0\WidgetScmDataAccess.csproj.AssemblyReference.cache
+D:\Learn\learn-dotnet\CreateTablesTest\WidgetScmDataAccess\obj\Debug\net5.0\WidgetScmDataAccess.GeneratedMSBuildEditorConfig.editorconfig
+D:\Learn\learn-dotnet\CreateTablesTest\WidgetScmDataAccess\obj\Debug\net5.0\WidgetScmDataAccess.AssemblyInfoInputs.cache
+D:\Learn\learn-dotnet\CreateTablesTest\WidgetScmDataAccess\obj\Debug\net5.0\WidgetScmDataAccess.AssemblyInfo.cs
+D:\Learn\learn-dotnet\CreateTablesTest\WidgetScmDataAccess\obj\Debug\net5.0\WidgetScmDataAccess.csproj.CoreCompileInputs.cache
+D:\Learn\learn-dotnet\CreateTablesTest\WidgetScmDataAccess\obj\Debug\net5.0\WidgetScmDataAccess.dll
+D:\Learn\learn-dotnet\CreateTablesTest\WidgetScmDataAccess\obj\Debug\net5.0\ref\WidgetScmDataAccess.dll
+D:\Learn\learn-dotnet\CreateTablesTest\WidgetScmDataAccess\obj\Debug\net5.0\WidgetScmDataAccess.pdb
