@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Linq;
 
 namespace WidgetScmDataAccess
 {
@@ -46,18 +47,32 @@ namespace WidgetScmDataAccess
                 command.CommandText = @"SELECT
                     PartTypeId, Count, OrderThreshold
                     FROM InventoryItem";
-                using (var reader = command.ExecuteReader())
+                // using (var reader = command.ExecuteReader())
+                // {
+                //     var items = new List<InventoryItem>();
+                //     Inventory = items;
+                //     while (reader.Read())
+                //     {
+                //         items.Add(new InventoryItem() {
+                //             PartTypeId = reader.GetInt32(0),
+                //             Count = reader.GetInt32(1),
+                //             OrderThreshold = reader.GetInt32(2)
+                //         });
+                //     }
+                // }
+
+                var reader = command.ExecuteReader();
+                var items = new List<InventoryItem>();
+                Inventory = items;
+                while (reader.Read())
                 {
-                    var items = new List<InventoryItem>();
-                    Inventory = items;
-                    while (reader.Read())
-                    {
-                        items.Add(new InventoryItem() {
-                            PartTypeId = reader.GetInt32(0),
-                            Count = reader.GetInt32(1),
-                            OrderThreshold = reader.GetInt32(2)
-                        });
-                    }
+                    var item = new InventoryItem() {
+                        PartTypeId = reader.GetInt32(0),
+                        Count = reader.GetInt32(1),
+                        OrderThreshold = reader.GetInt32(2)
+                    };
+                    items.Add(item);
+                    item.Part = Parts.Single(p => p.Id == item.PartTypeId);
                 }
             }
         }
