@@ -23,6 +23,13 @@ namespace SqliteScmTest
             Assert.Equal(1, parts.Count());
             var part = parts.First();
             Assert.Equal("8289 L-shaped plate", part.Name);
+
+            var inventory = context.Inventory;
+            Assert.Equal(1, inventory.Count());
+            var item = inventory.First();
+            Assert.Equal(part.Id, item.PartTypeId);
+            Assert.Equal(100, item.Count);
+            Assert.Equal(10, item.OrderThreshold);
         }
     }
 }
