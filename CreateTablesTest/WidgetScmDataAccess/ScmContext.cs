@@ -76,5 +76,68 @@ namespace WidgetScmDataAccess
                 }
             }
         }
+
+        public void CreatePartCommand(PartCommand partCommand)
+        {
+            var command = connection.CreateCommand();
+            command.CommandText = @"INSERT INTO PartCommand
+                (PartTypeId, Count, Command)
+                VALUES
+                (@partTypeId, @partCount, @command);
+                SELECT last_insert_rowid();";
+
+            AddParameter(command, "@partTypeId", partCommand.PartTypeId);
+            AddParameter(command, "@partCount", partCommand.PartCount);
+            AddParameter(command, "@command", partCommand.Command.ToString());
+
+            long partCommandId = (long)command.ExecuteScalar();
+            partCommand.Id = (int)partCommandId;
+        }
+
+        private void AddParameter(DbCommand cmd, string name, object value)
+        {
+            var p = cmd.CreateParameter();
+            if (value == null)
+                throw new ArgumentNullException("value");
+            Type t = value.GetType();
+            if (t == typeof(int))
+                p.DbType = DbType.Int32;
+            else if (t == typeof(string))
+                p.DbType = DbType.String;
+            else if (t == typeof(DateTime))
+                p.DbType = DbType.DateTime;
+            else
+                throw new ArgumentException($"Unrecognized type: {t.ToString()}", "value");
+            p.Direction = ParameterDirection.Input;
+            p.ParameterName = name;
+            p.Value = value;
+            cmd.Parameters.Add(p);
+        }
+
+        public IEnumerable<PartCommand> GetPartCommands()
+        {
+            var command = connection.CreateCommand();
+            command.CommandText = @"SELECT 
+                Id, PartTypeId, Count, Command
+                FROM PartCommand
+                ORDER BY Id";
+            var reader = command.ExecuteReader();
+            var partCommands = new List<PartCommand>();
+            while(reader.Read())
+            {
+                var cmd = new PartCommand() {
+                    Id = reader.GetInt32(0),
+                    PartTypeId = reader.GetInt32(1),
+                    PartCount = reader.GetInt32(2),
+                    Command = (PartCountOperation)Enum.Parse(
+                        typeof(PartCountOperation),
+                        reader.GetString(3)
+                    );
+                };
+                cmd.Part = Parts.Single(p => p.Id == cmd.PartTypeId);
+                partCommands.Add(cmd);
+            }
+            return partCommands;
+        }
     }
 }
