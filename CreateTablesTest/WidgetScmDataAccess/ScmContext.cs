@@ -129,15 +129,39 @@ namespace WidgetScmDataAccess
                     Id = reader.GetInt32(0),
                     PartTypeId = reader.GetInt32(1),
                     PartCount = reader.GetInt32(2),
-                    Command = (PartCountOperation)Enum.Parse(
-                        typeof(PartCountOperation),
-                        reader.GetString(3)
-                    );
+                    // Command = (PartCountOperation)Enum.Parse(
+                    //     typeof(PartCountOperation),
+                    //     reader.GetString(3)
+                    // );
                 };
                 cmd.Part = Parts.Single(p => p.Id == cmd.PartTypeId);
+
+                PartCountOperation operation;
+                if (Enum.TryParse<PartCountOperation>(reader.GetString(3), out operation))
+                    cmd.Command = operation;
                 partCommands.Add(cmd);
             }
             return partCommands;
+        }
+
+        public void UpdateInventoryItem(int partTypeId, int count)
+        {
+            var command = connection.CreateCommand();
+            command.CommandText = @"UPDATE InventoryItem
+                SET Count=@count
+                WHERE PartTypeId=@partTypeId";
+            AddParameter(command, "@count", count);
+            AddParameter(command, "@partTypeId", partTypeId);
+            command.ExecuteNonQuery();
+        }
+
+        public void DeletePartCommand(int id)
+        {
+            var command = connection.CreateCommand();
+            command.CommandText = @"DELETE FROM PartCommand
+                WHERE Id=@id";
+            AddParameter(command, "@id", id);
+            command.ExecuteNonQuery();
         }
     }
 }
