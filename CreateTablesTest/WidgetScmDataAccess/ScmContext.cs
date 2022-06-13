@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
 using System.Linq;
 
@@ -20,6 +21,11 @@ namespace WidgetScmDataAccess
             ReadInventory();
         }
 
+        public DbTransaction BeginTransaction()
+        {
+            return connection.BeginTransaction();
+        }
+        
         private void ReadParts()
         {
             using (var command = connection.CreateCommand())
@@ -47,20 +53,6 @@ namespace WidgetScmDataAccess
                 command.CommandText = @"SELECT
                     PartTypeId, Count, OrderThreshold
                     FROM InventoryItem";
-                // using (var reader = command.ExecuteReader())
-                // {
-                //     var items = new List<InventoryItem>();
-                //     Inventory = items;
-                //     while (reader.Read())
-                //     {
-                //         items.Add(new InventoryItem() {
-                //             PartTypeId = reader.GetInt32(0),
-                //             Count = reader.GetInt32(1),
-                //             OrderThreshold = reader.GetInt32(2)
-                //         });
-                //     }
-                // }
-
                 var reader = command.ExecuteReader();
                 var items = new List<InventoryItem>();
                 Inventory = items;

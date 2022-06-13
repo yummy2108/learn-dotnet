@@ -17,7 +17,16 @@ namespace SqliteScmTest
                 PartTypeId INTEGER PRIMARY KEY,
                 Count INTEGER NOT NULL,
                 OrderThreshold INTEGER,
-            FOREIGN KEY(PartTypeId) REFERENCES PartType(Id)
+                FOREIGN KEY(PartTypeId) REFERENCES PartType(Id)
+            );";
+        
+        private const string PartCommandTable = 
+            @"CREATE TABLE PartCommand(
+                Id INTEGER PRIMARY KEY,
+                Count INTEGER NOT NULL,
+                PartTypeId INTEGER NOT NULL,
+                Command VARCHAR(50) NOT NULL,
+                FOREIGN KEY(PartTypeId) REFERENCES PartType(Id)
             );";
 
         public SqliteConnection Connection { get; private set; }
@@ -30,6 +39,7 @@ namespace SqliteScmTest
 
             (new SqliteCommand(PartTypeTable, conn)).ExecuteNonQuery();
             (new SqliteCommand(InventoryItemTable, conn)).ExecuteNonQuery();
+            (new SqliteCommand(PartCommandTable, conn)).ExecuteNonQuery();
             (new SqliteCommand(
                 @"INSERT INTO PartType
                     (Id, Name)
