@@ -29,6 +29,34 @@ namespace SqliteScmTest
                 FOREIGN KEY(PartTypeId) REFERENCES PartType(Id)
             );";
 
+        private const string SupplierTable = 
+            @"CREATE TABLE Supplier(
+                Id INTEGER PRIMARY KEY,
+                Name VARCHAR(255) NOT NULL,
+                PartTypeId INTEGER NOT NULL,
+                Email VARCHAR(255) NOT NULL,
+                FOREIGN KEY(PartTypeId) REFERENCES PartType(Id)             
+            );";
+
+        private const string OrderTable = 
+            @"CREATE TABLE [Order](
+                Id INTEGER PRIMARY KEY,
+                SupplierId INTEGER NOT NULL,
+                PartTypeId INTEGER NOT NULL,
+                PartCount INTEGER NOT NULL,
+                PlacedDate DATETIME NOT NULL,
+                FulfilledDate DATETIME,
+                FOREIGN KEY(SupplierId) REFERENCES Supplier(Id),
+                FOREIGN KEY(PartTypeId) REFERENCES PartType(Id)                   
+            );";
+        
+        private const string SendEmailCommandTable = 
+            @"CREATE TABLE SendEmailCommand(
+                Id INTEGER PRIMARY KEY,
+                [To] VARCHAR(255) NOT NULL,
+                Subject VARCHAR(255) NOT NULL,
+                Body ablob
+            );";
         public SqliteConnection Connection { get; private set; }
 
         public SampleScmDataFixture()
@@ -40,6 +68,9 @@ namespace SqliteScmTest
             (new SqliteCommand(PartTypeTable, conn)).ExecuteNonQuery();
             (new SqliteCommand(InventoryItemTable, conn)).ExecuteNonQuery();
             (new SqliteCommand(PartCommandTable, conn)).ExecuteNonQuery();
+            (new SqliteCommand(SupplierTable, conn)).ExecuteNonQuery();
+            (new SqliteCommand(OrderTable, conn)).ExecuteNonQuery();
+            (new SqliteCommand(SendEmailCommandTable, conn)).ExecuteNonQuery();
             (new SqliteCommand(
                 @"INSERT INTO PartType
                     (Id, Name)
@@ -51,6 +82,12 @@ namespace SqliteScmTest
                     (PartTypeId, Count, OrderThreshold)
                     VALUES
                     (0, 100, 10)", conn
+            )).ExecuteNonQuery();
+            (new SqliteCommand(
+                @"INSERT INTO Supplier
+                    (Name, Email, PartTypeId)
+                    VALUES
+                    ('joe Supplier', 'joe@joesupplier.com', 0)", conn
             )).ExecuteNonQuery();
         }
 

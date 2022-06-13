@@ -1,7 +1,10 @@
 using System;
-using Xunit;
-using WidgetScmDataAccess;
+using System.Data;
+using System.Data.Common;
 using System.Linq;
+using Microsoft.Data.Sqlite;
+using WidgetScmDataAccess;
+using Xunit;
 
 namespace SqliteScmTest
 {
@@ -52,6 +55,34 @@ namespace SqliteScmTest
             var inventory = new Inventory(context);
             inventory.UpdateInventory();
             Assert.Equal(startCount + 5, item.Count);
+        }
+
+        [Fact]
+        public void TestCreateOrderTransaction()
+        {
+            var placedDate = DateTime.Now;
+            var supplier = context.Suppliers.First();
+            var order = new Order()
+            {
+                PartTypeId = supplier.PartTypeId,
+                SupplierId = supplier.Id,
+                PartCount = 10,
+                PlacedDate = placedDate
+            };
+
+            Assert.Throws<NullReferenceException>(() => context.CreateOrder(order));
+            var command = new SqliteCommand(
+                @"SELECT Count(*) FROM [Order] WHERE                               
+                SupplierId=@supplierId AND                                       
+                PartTypeId=@partTypeId AND
+                PlacedDate=@placedDate AND
+                PartCount=10 AND
+                FulfilledDate IS NULL",
+                fixture.Connection);
+                context.AddParameter(command, "@supplierId", supplier.Id);                   
+                context.AddParameter(command, "@partTypeId", supplier.PartTypeId);
+                context.AddParameter(command, "@placedDate", placedDate);
+                Assert.Equal(0, (long)command.ExecuteScalar()); 
         }
     }
 }
