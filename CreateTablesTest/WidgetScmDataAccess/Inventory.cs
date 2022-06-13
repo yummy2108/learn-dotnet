@@ -34,6 +34,27 @@ namespace WidgetScmDataAccess
                 }
                 
             }
+
+            var orders = context.GetOrders();
+            foreach(var item in context.Inventory)
+            {
+                if (item.Count < item.OrderThreshold && orders.FirstOrDefault(o => o.PartTypeId == item.PartTypeId && !o.FulfilledDate.HasValue) == null)
+                {
+                    OrderPart(item.Part, item.OrderThreshold);
+                }
+            }
+        }
+        public void OrderPart(PartType part, int count)
+        {
+            var order = new Order() {
+                PartTypeId = part.Id,
+                PartCount = count,
+                PlacedDate = DateTime.Now
+            };
+            order.Part = context.Parts.Single(p => p.Id == order.PartTypeId);
+            order.Supplier = context.Suppliers.First(s => s.PartTypeId == part.Id);
+            order.SupplierId = order.Supplier.Id;
+            context.CreateOrder(order);
         }
     }
 }

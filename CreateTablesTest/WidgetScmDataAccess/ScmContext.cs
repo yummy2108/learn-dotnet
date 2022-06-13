@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
+using System.Transactions;
 
 namespace WidgetScmDataAccess
 {
@@ -219,6 +220,63 @@ namespace WidgetScmDataAccess
                 transaction.Rollback();
                 throw;
             }
+        }
+
+        public void CreateOrderSysTx(Order order)
+        {
+            using (var tx = new TransactionScope())
+            {
+                var command = connection.CreateCommand();
+                command.CommandText = @"INSERT INTO [Order]
+                    (SupplierId, PartTypeId, PartCount, PlacedDate)
+                    VALUES
+                    (@supplierId, @partTypeId, @partCount, @placedDate);
+                    SELECT last_insert_rowid()";
+                
+                AddParameter(command, "@supplierId", order.SupplierId);
+                AddParameter(command, "@partTypeId", order.PartTypeId);
+                AddParameter(command, "@partCount", order.PartCount);
+                AddParameter(command, "@placedDate", order.PlacedDate);
+                long orderId = (long)command.ExecuteScalar();
+                order.Id = (int)orderId;
+
+                command = connection.CreateCommand();
+                command.CommandText = @"INSERT INTO SendEmailCommand
+                    ([To], Subject, Body) VALUES
+                    (@To, @Subject, @Body)";
+                AddParameter(command, "@To", order.Supplier.Email);
+                AddParameter(command, "@Subject", $"Order #{orderId} for {order.Part.Name}");
+                AddParameter(command, "@Body", $"Please send {order.PartCount}" + $" items of {order.Part.Name} to Widget Corp");
+                command.ExecuteNonQuery();
+                tx.Complete();
+            }
+        }
+
+        public IEnumerable<Order> GetOrders()
+        {
+            var command = connection.CreateCommand();
+            command.CommandText = @"SELECT
+                Id, SupplierId, PartTypeId, PartCount, PlacedDate, FulfilledDate
+                FROM [Order]";
+            var reader = command.ExecuteReader();
+            var orders = new List<Order>();
+            while (reader.Read())
+            {
+                var order = new Order() {
+                Id = reader.GetInt32(0),
+                SupplierId = reader.GetInt32(1),
+                PartTypeId = reader.GetInt32(2),
+                PartCount = reader.GetInt32(3),
+                PlacedDate = reader.GetDateTime(4),
+                FulfilledDate = reader.IsDBNull(5) ?                         
+                    default(DateTime?) : reader.GetDateTime(5)                 
+                };
+                order.Part = Parts.Single(p => p.Id == order.PartTypeId);
+                order.Supplier = Suppliers.First(s => s.Id == order.SupplierId);
+                orders.Add(order);
+        }
+
+        return orders;
         }
     }
 }
