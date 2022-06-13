@@ -25,7 +25,7 @@ namespace WidgetScmDataAccess
         {
             return connection.BeginTransaction();
         }
-        
+
         private void ReadParts()
         {
             using (var command = connection.CreateCommand())
@@ -136,9 +136,11 @@ namespace WidgetScmDataAccess
             return partCommands;
         }
 
-        public void UpdateInventoryItem(int partTypeId, int count)
+        public void UpdateInventoryItem(int partTypeId, int count, DbTransaction transaction)
         {
             var command = connection.CreateCommand();
+            if (transaction != null)
+                command.Transaction = transaction;
             command.CommandText = @"UPDATE InventoryItem
                 SET Count=@count
                 WHERE PartTypeId=@partTypeId";
@@ -147,9 +149,11 @@ namespace WidgetScmDataAccess
             command.ExecuteNonQuery();
         }
 
-        public void DeletePartCommand(int id)
+        public void DeletePartCommand(int id, DbTransaction transaction)
         {
             var command = connection.CreateCommand();
+            if (transaction != null)
+                command.Transaction = transaction;
             command.CommandText = @"DELETE FROM PartCommand
                 WHERE Id=@id";
             AddParameter(command, "@id", id);
