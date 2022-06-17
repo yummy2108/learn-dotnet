@@ -4,4 +4,11 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite"
+                      Version="1.1.0" />
+    <PackageReference Include="Dapper"
+                      Version="1.50.2" />
+    <ProjectReference Include="../ScmDataAccess/ScmDataAccess.csproj" />
+  </ItemGroup>
 </Project>

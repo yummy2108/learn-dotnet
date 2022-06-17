@@ -17,6 +17,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.0.0" />                                              
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />                                              
+    <ProjectReference Include="../SqliteDal/SqliteDal.csproj" />
   </ItemGroup>
 
 </Project>
