@@ -18,14 +18,25 @@ namespace SqliteScmTest
 
         public SampleScmDataFixture()
         {
-            var conn = new SqliteConnection("Data Source=:memory:");
-            conn.Open();
+            // var conn = new SqliteConnection("Data Source=:memory:");
+            // conn.Open();
 
-            (new SqliteCommand(PartTypeTable, conn)).ExecuteNonQuery();
+            // (new SqliteCommand(PartTypeTable, conn)).ExecuteNonQuery();
+
+            // var serviceCollection = new ServiceCollection();
+            // IScmContext context = new SqliteScmContext(conn);
+            // serviceCollection.AddSingleton<IScmContext>(context);
+            // Services = serviceCollection.BuildServiceProvider();
 
             var serviceCollection = new ServiceCollection();
-            IScmContext context = new SqliteScmContext(conn);
-            serviceCollection.AddSingleton<IScmContext>(context);
+            serviceCollection.AddTransient<IScmContext>(
+                provider => {
+                    var conn = new SqliteConnection("Data Source=:memory:");
+                    conn.Open();
+                    (new SqliteCommand(PartTypeTable, conn)).ExecuteNonQuery();
+                    return new SqliteScmContext(conn);
+                }
+            );
             Services = serviceCollection.BuildServiceProvider();
         }
     }
